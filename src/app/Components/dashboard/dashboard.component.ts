@@ -5,7 +5,7 @@ import {Account} from "../../Models/account.model";
 import {Expense} from "../../Models/expense.model";
 import {CommonModule, CurrencyPipe} from "@angular/common";
 import { Router } from '@angular/router';
-
+import { AuthService} from "../../Services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +23,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private expenseService: ExpenseService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService // Inject AuthService
   ) { }
 
   ngOnInit(): void {
@@ -62,5 +63,8 @@ export class DashboardComponent implements OnInit {
 
   addIncome(accountId: number): void {
     this.router.navigate(['/addIncome'], { queryParams: { accountId: accountId } });
+  }
+  logout(): void {
+    this.authService.logout(); // Call the logout method from AuthService
   }
 }
