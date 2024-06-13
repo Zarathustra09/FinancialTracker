@@ -59,4 +59,8 @@ export class DashboardComponent implements OnInit {
   addExpense(): void {
     this.router.navigate(['/addExpense']);  // Navigate to addExpense
   }
+
+  addIncome(accountId: number): void {
+    this.router.navigate(['/addIncome'], { queryParams: { accountId: accountId } });
+  }
 }

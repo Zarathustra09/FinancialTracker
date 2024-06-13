@@ -51,5 +51,11 @@ export class LoginComponent {
           // Handle login error (e.g., show error message)
         }
       );
+
+
+  }
+  register(): void {
+    this.router.navigate(['/register']);
   }
 }
+

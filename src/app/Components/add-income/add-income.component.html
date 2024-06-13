@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2>Add Income</h2>
+  <form (ngSubmit)="addIncome()">
+    <div class="form-group">
+      <label for="accountId">Account</label>
+      <select class="form-control" id="accountId" [(ngModel)]="income.accountId" name="accountId" required>
+        <option *ngFor="let account of accounts" [value]="account.id">
+          {{ account.name }} - {{ account.balance | currency }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" id="amount" [(ngModel)]="income.amount" name="amount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Income</button>
+  </form>
+</div>
