@@ -36,4 +36,7 @@ export class RegisterComponent {
       }
     );
   }
+  login(): void {
+    this.router.navigate(['/login']); // Call the logout method from AuthService
+  }
 }

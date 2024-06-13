@@ -55,6 +55,7 @@ export class LoginComponent {
 
   }
   register(): void {
+    console.log('success');
     this.router.navigate(['/register']);
   }
 }
