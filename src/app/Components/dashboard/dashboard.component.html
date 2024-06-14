@@ -1,10 +1,8 @@
 <div class="container mt-4">
   <h2 class="text-center">Financial Tracker Dashboard</h2>
-
   <div class="text-right mb-3">
     <button class="btn btn-danger" (click)="logout()">Logout</button>
   </div>
-
   <div class="row">
     <div class="col-md-6">
       <div class="card mb-4">
@@ -19,9 +17,6 @@
             <li *ngFor="let account of accounts" class="list-group-item d-flex justify-content-between align-items-center">
               <span>{{ account.name }}</span>
               <span class="badge badge-primary badge-pill text-dark">{{ account.balance | currency }}</span>
-              <button class="btn btn-primary btn-sm" (click)="addIncome(account.id)">
-                <i class="fas fa-plus"></i>
-              </button>
             </li>
           </ul>
         </div>
@@ -41,9 +36,22 @@
             <li *ngFor="let expense of expenses" class="list-group-item d-flex justify-content-between align-items-center">
               <span>{{ expense.description }}</span>
               <span class="badge badge-danger badge-pill text-dark">{{ expense.amount | currency }}</span>
-              <small class="text-muted">Category: {{ expense.category }}</small>
+              <small class="text-muted">Category: {{ getCategoryName(expense.category) }}</small>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Expenses by Category</h3>
+        </div>
+        <div class="card-body">
+          <canvas id="canvas"></canvas>
         </div>
       </div>
     </div>

@@ -19,8 +19,15 @@
     </div>
     <div class="form-group">
       <label for="category">Category</label>
-      <input type="number" class="form-control" id="category" [(ngModel)]="expense.category" name="category" required>
+      <select class="form-control" id="category" [(ngModel)]="expense.category" name="category" required>
+        <option [value]="1">Transportation</option>
+        <option [value]="2">Food and Groceries</option>
+        <option [value]="3">Housing/Rent</option>
+        <option [value]="4">Utility</option>
+        <option [value]="5">Other</option>
+      </select>
     </div>
+
     <button type="submit" class="btn btn-primary">Create Expense</button>
   </form>
 </div>
