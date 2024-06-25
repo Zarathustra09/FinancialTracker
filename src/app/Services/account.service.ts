@@ -31,4 +31,10 @@ export class AccountService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<Account>(`${this.apiUrl}Account/add-income`, incomeDto, { headers });
   }
+
+  updateAccount(id: number, accountDto: CreateAccountDto): Observable<Account> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Account>(`${this.apiUrl}Account/${id}`, accountDto, { headers });
+  }
 }

@@ -1,59 +1,132 @@
-<div class="container mt-4">
-  <h2 class="text-center">Financial Tracker Dashboard</h2>
-  <div class="text-right mb-3">
-    <button class="btn btn-danger" (click)="logout()">Logout</button>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h3>User Accounts</h3>
-          <button class="btn btn-primary btn-sm" (click)="addAccount()">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <div class="card-body">
-          <ul class="list-group">
-            <li *ngFor="let account of accounts" class="list-group-item d-flex justify-content-between align-items-center">
-              <span>{{ account.name }}</span>
-              <span class="badge badge-primary badge-pill text-dark">{{ account.balance | currency }}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+<body>
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="navbar-brand-wrapper d-flex align-items-center">
+        <span class="text-white">Money Mind</span>
     </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+      <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome to Money Mind!</h5>
 
-    <div class="col-md-6">
-      <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h3>User Expenses</h3>
-          <button class="btn btn-primary btn-sm" (click)="addExpense()">
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <div class="card-body">
-          <ul class="list-group">
-            <li *ngFor="let expense of expenses" class="list-group-item d-flex justify-content-between align-items-center">
-              <span>{{ expense.description }}</span>
-              <span class="badge badge-danger badge-pill text-dark">{{ expense.amount | currency }}</span>
-              <small class="text-muted">Category: {{ getCategoryName(expense.category) }}</small>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <span class="icon-menu"></span>
+      </button>
     </div>
-  </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
 
-  <div class="row mt-4">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h3>Expenses by Category</h3>
+        <li class="nav-item nav-category">
+          <span class="nav-link">Component Items</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard">
+            <span class="menu-title">Dashboard</span>
+            <i class="icon-screen-desktop menu-icon"></i>
+          </a>
+        </li>
+        <li class="nav-item nav-category"><span class="nav-link">Functions</span></li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" routerLink="/addAccount" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-title">Create Account</span>
+            <i class="icon-wallet menu-icon"></i> <!-- Changed icon -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/addExpense">
+            <span class="menu-title">Create Expense</span>
+            <i class="icon-handbag menu-icon"></i> <!-- Changed icon -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/addIncome">
+            <span class="menu-title">Create Income</span>
+            <i class="icon-diamond menu-icon"></i> <!-- Changed icon -->
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="main-panel">
+
+
+      <div class="container mt-4">
+        <h2 class="text-center">Financial Tracker Dashboard</h2>
+        <div class="text-right mb-3">
+          <button class="btn btn-danger" (click)="logout()">Logout</button>
         </div>
-        <div class="card-body">
-          <canvas id="canvas"></canvas>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>User Accounts</h3>
+                <button class="btn btn-primary btn-sm" (click)="addAccount()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li *ngFor="let account of accounts" class="list-group-item d-flex justify-content-between align-items-center">
+                    <a [routerLink]="['/update-account', account.id]" class="card-link">{{ account.name }}</a>
+                    <span class="badge badge-primary badge-pill text-dark">{{ account.balance | currency }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h3>User Expenses</h3>
+                <button class="btn btn-primary btn-sm" (click)="addExpense()">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="card-body">
+                <ul class="list-group">
+                  <li *ngFor="let expense of expenses" class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ expense.description }}</span>
+                    <span class="badge badge-danger badge-pill text-dark">{{ expense.amount | currency }}</span>
+                    <small class="text-muted">Category: {{ getCategoryName(expense.category) }}</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3>Expenses by Category</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="canvas"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+
+      <!-- partial -->
     </div>
+    <!-- main-panel ends -->
   </div>
+  <!-- page-body-wrapper ends -->
 </div>
+</body>
+
+
+
+
+
+
+
+
+

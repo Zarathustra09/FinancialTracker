@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService} from "../../Services/account.service";
-import { ExpenseService} from "../../Services/expense.service"; // Adjust path as necessary
-import {Account} from "../../Models/account.model";
-import {Expense} from "../../Models/expense.model";
-import {CommonModule, CurrencyPipe} from "@angular/common";
-import { Router } from '@angular/router';
-import { AuthService} from "../../Services/auth.service";
+import { AccountService } from "../../Services/account.service";
+import { ExpenseService } from "../../Services/expense.service";
+import { Account } from "../../Models/account.model";
+import { Expense } from "../../Models/expense.model";
+import { CommonModule, CurrencyPipe } from "@angular/common";
+import {Router, RouterLink} from '@angular/router'; // Import Router from @angular/router
+import { AuthService } from "../../Services/auth.service";
 import Chart from 'chart.js/auto';
 
 @Component({
@@ -13,7 +13,7 @@ import Chart from 'chart.js/auto';
   templateUrl: './dashboard.component.html',
   standalone: true,
   imports: [
-    CurrencyPipe, CommonModule
+    CurrencyPipe, CommonModule, RouterLink
   ],
   styleUrls: ['./dashboard.component.css']
 })
@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private expenseService: ExpenseService,
-    private router: Router,
-  private authService: AuthService
+    private router: Router, // Inject Router
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -118,6 +118,7 @@ export class DashboardComponent implements OnInit {
 
     return categoryTotals;
   }
+
   logout(): void {
     this.authService.logout(); // Call the logout method from AuthService
   }
